@@ -1,9 +1,11 @@
 <?php
+
 namespace {{namespace}};
 
 use {{foundation_abstract_namespace}} as Operation;
 use Illuminate\Http\Request;
 {{use_jobs}}
+
 class {{operation}} extends Operation
 {
     public function handle(Request $request)
