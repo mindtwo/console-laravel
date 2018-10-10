@@ -51,8 +51,8 @@ class FeatureGenerator extends Generator
         }
 
         $content = str_replace(
-            ['{{feature}}', '{{namespace}}', '{{foundation_namespace}}', '{{use_jobs}}', '{{run_jobs}}'],
-            [$feature, $namespace, $this->findFoundationNamespace(), $useJobs, $runJobs],
+            ['{{feature}}', '{{namespace}}', '{{foundation_abstract_namespace}}', '{{use_jobs}}', '{{run_jobs}}'],
+            [$feature, $namespace, config('lucid.namespaces.foundation_feature'), $useJobs, $runJobs],
             $content
         );
 

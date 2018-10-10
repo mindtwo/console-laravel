@@ -2,7 +2,7 @@
 
 namespace {{namespace}};
 
-use Illuminate\Database\Eloquent\Model;
+use {{foundation_abstract_namespace}} as Model;
 
 class {{model}} extends Model
 {

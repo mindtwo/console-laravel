@@ -1,7 +1,7 @@
 <?php
 namespace {{namespace}};
 
-use {{foundation_namespace}}\QueueableJob;
+use {{foundation_abstract_namespace}} as QueueableJob;
 
 class {{job}} extends QueueableJob
 {

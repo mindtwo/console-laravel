@@ -41,8 +41,8 @@ class PolicyGenerator extends Generator
 
         $content = file_get_contents($this->getStub());
         $content = str_replace(
-            ['{{policy}}', '{{namespace}}', '{{foundation_namespace}}'],
-            [$policy, $namespace, $this->findFoundationNamespace()],
+            ['{{policy}}', '{{namespace}}'],
+            [$policy, $namespace],
             $content
         );
 

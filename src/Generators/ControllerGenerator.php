@@ -36,8 +36,8 @@ class ControllerGenerator extends Generator
 
         $content = file_get_contents($this->getStub($plain));
         $content = str_replace(
-             ['{{controller}}', '{{namespace}}', '{{foundation_namespace}}'],
-             [$name, $namespace, $this->findFoundationNamespace()],
+             ['{{controller}}', '{{namespace}}', '{{foundation_abstract_namespace}}'],
+             [$name, $namespace, config('lucid.namespaces.foundation_controller')],
              $content
          );
 

@@ -41,8 +41,8 @@ class RequestGenerator extends Generator
 
         $content = file_get_contents($this->getStub());
         $content = str_replace(
-            ['{{request}}', '{{namespace}}', '{{foundation_namespace}}'],
-            [$request, $namespace, $this->findFoundationNamespace()],
+            ['{{request}}', '{{namespace}}'],
+            [$request, $namespace],
             $content
         );
 

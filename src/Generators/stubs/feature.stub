@@ -1,7 +1,7 @@
 <?php
 namespace {{namespace}};
 
-use {{foundation_namespace}}\Feature;
+use {{foundation_abstract_namespace}} as Feature;
 use Illuminate\Http\Request;
 {{use_jobs}}
 class {{feature}} extends Feature

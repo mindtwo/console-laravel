@@ -1,7 +1,7 @@
 <?php
 namespace {{namespace}};
 
-use {{foundation_namespace}}\Job;
+use {{foundation_abstract_namespace}} as Job;
 
 class {{job}} extends Job
 {

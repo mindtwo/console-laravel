@@ -160,7 +160,7 @@ trait Finder
      */
     public function findFoundationNamespace()
     {
-        return 'Lucid\Foundation';
+        return config('lucid.namespaces.foundation');
     }
 
     /**

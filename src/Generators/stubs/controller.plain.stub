@@ -2,7 +2,7 @@
 namespace {{namespace}};
 
 use Illuminate\Http\Request;
-use {{foundation_namespace}}\Http\Controller;
+use {{foundation_abstract_namespace}} as Controller;
 
 class {{controller}} extends Controller
 {
