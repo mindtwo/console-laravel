@@ -16,8 +16,8 @@ Route::group(['prefix' => '{{slug}}'], function() {
     // The controllers live in {{controllers_path}}
     // Route::get('/', 'UserController@index');
 
-    Route::get('/', function() {
-        return view('{{slug}}::welcome');
-    });
+    // Route::get('/', function() {
+    //     return view('{{slug}}::welcome');
+    // });
 
 });
