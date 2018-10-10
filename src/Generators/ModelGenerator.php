@@ -35,11 +35,12 @@ class ModelGenerator extends Generator
         }
 
         $namespace = $this->findModelNamespace();
+        $foundation_class = $this->config('lucid.namespaces.foundation_model');
 
         $content = file_get_contents($this->getStub());
         $content = str_replace(
-            ['{{model}}', '{{namespace}}', '{{foundation_abstract_namespace}}'],
-            [$model, $namespace, config('lucid.namespaces.foundation_model')],
+            ['{{model}}', '{{namespace}}', '{{foundation_class}}'],
+            [$model, $namespace, $this->checkNamespaceAsSurfix($foundation_class, 'Model')],
             $content
         );
 

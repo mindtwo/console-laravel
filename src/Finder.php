@@ -160,7 +160,7 @@ trait Finder
      */
     public function findFoundationNamespace()
     {
-        return config('lucid.namespaces.foundation');
+        return $this->config('lucid.namespaces.foundation');
     }
 
     /**
@@ -836,14 +836,35 @@ trait Finder
     }
 
     /**
+     * @param $key
+     *
+     * @return mixed
+     */
+    protected function config($key) {
+        $configNamespace = array_shift(explode('.', $key));
+
+        $config = $this->getConfigPath($configNamespace);
+        $config = array_dot(empty($config) ? [] : include($config), $configNamespace . '.');
+
+        return array_key_exists($key, $config) ? $config[$key] : '';
+    }
+
+    /**
      * Get the path to the given configuration file.
      *
      * @param string $name
      *
      * @return string
      */
-    protected function getConfigPath($name)
+    protected function getConfigPath($name='lucid')
     {
-        return app()['path.config'].'/'.$name.'.php';
+        if(file_exists(app()['path.config'].'/'.$name.'.php')) {
+            return app()['path.config'].'/'.$name.'.php';
+        }
+        if(file_exists(__DIR__.'/../config/'.$name.'.php')) {
+            return __DIR__.'/../config/'.$name.'.php';
+        }
+
+        return false;
     }
 }

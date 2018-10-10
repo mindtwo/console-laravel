@@ -2,7 +2,7 @@
 
 namespace {{namespace}};
 
-use {{foundation_abstract_namespace}} as QueueableOperation;
+use {{foundation_class}};
 use Illuminate\Http\Request;
 {{use_jobs}}
 

@@ -3,7 +3,7 @@
 namespace {{namespace}};
 
 use Illuminate\Http\Request;
-use {{foundation_abstract_namespace}} as Controller;
+use {{foundation_class}};
 
 class {{controller}} extends Controller
 {

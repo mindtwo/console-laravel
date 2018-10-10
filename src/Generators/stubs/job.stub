@@ -2,7 +2,7 @@
 
 namespace {{namespace}};
 
-use {{foundation_abstract_namespace}} as Job;
+use {{foundation_class}};
 
 class {{job}} extends Job
 {

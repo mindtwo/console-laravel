@@ -38,12 +38,12 @@ class JobGenerator extends Generator
         // Create the job
         $namespace = $this->findDomainJobsNamespace($domain);
 
-        $foundation_abstract_namespace = $isQueueable ? config('lucid.namespaces.foundation_queueable_job') : config('lucid.namespaces.foundation_job');
+        $foundation_class = $isQueueable ? $this->config('lucid.namespaces.foundation_queueable_job') : $this->config('lucid.namespaces.foundation_job');
 
         $content = file_get_contents($this->getStub($isQueueable));
         $content = str_replace(
-            ['{{job}}', '{{namespace}}', '{{foundation_abstract_namespace}}'],
-            [$job, $namespace, $foundation_abstract_namespace],
+            ['{{job}}', '{{namespace}}', '{{foundation_class}}'],
+            [$job, $namespace, $this->checkNamespaceAsSurfix($foundation_class, 'Job')],
             $content
         );
 

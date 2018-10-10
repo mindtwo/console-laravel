@@ -2,7 +2,7 @@
 
 namespace {{namespace}};
 
-use {{foundation_abstract_namespace}} as Model;
+use {{foundation_class}};
 
 class {{model}} extends Model
 {

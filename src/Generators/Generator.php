@@ -22,4 +22,14 @@ class Generator
 {
     use Finder;
     use Filesystem;
+
+    protected function checkNamespaceAsSurfix($namespace, $key=false) {
+        if(!$key) {
+            return $namespace;
+        }
+
+        $lastPart = array_pop(explode($namespace));
+
+        return $lastPart == $key ? $namespace : sprintf("%s as %s", $namespace, $key);
+    }
 }

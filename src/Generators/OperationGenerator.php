@@ -50,11 +50,11 @@ class OperationGenerator extends Generator
             }
         }
 
-        $foundation_abstract_namespace = $isQueueable ? config('lucid.namespaces.foundation_queueable_operation') : config('lucid.namespaces.foundation_operation');
+        $foundation_class = $isQueueable ? $this->config('lucid.namespaces.foundation_queueable_operation') : $this->config('lucid.namespaces.foundation_operation');
 
         $content = str_replace(
-            ['{{operation}}', '{{namespace}}', '{{foundation_abstract_namespace}}', '{{use_jobs}}', '{{run_jobs}}'],
-            [$operation, $namespace, $foundation_abstract_namespace, $useJobs, $runJobs],
+            ['{{operation}}', '{{namespace}}', '{{foundation_class}}', '{{use_jobs}}', '{{run_jobs}}'],
+            [$operation, $namespace, $this->checkNamespaceAsSurfix($foundation_class, 'Operation'), $useJobs, $runJobs],
             $content
         );
 

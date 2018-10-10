@@ -34,10 +34,12 @@ class ControllerGenerator extends Generator
 
         $namespace = $this->findControllerNamespace($service);
 
+        $foundation_class =$this->config('lucid.namespaces.foundation_controller');
+
         $content = file_get_contents($this->getStub($plain));
         $content = str_replace(
-             ['{{controller}}', '{{namespace}}', '{{foundation_abstract_namespace}}'],
-             [$name, $namespace, config('lucid.namespaces.foundation_controller')],
+             ['{{controller}}', '{{namespace}}', '{{foundation_class}}'],
+             [$name, $namespace, $this->checkNamespaceAsSurfix($foundation_class, 'Controller')],
              $content
          );
 

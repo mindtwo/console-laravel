@@ -50,9 +50,11 @@ class FeatureGenerator extends Generator
             }
         }
 
+        $foundation_class = $this->config('lucid.namespaces.foundation_feature');
+
         $content = str_replace(
-            ['{{feature}}', '{{namespace}}', '{{foundation_abstract_namespace}}', '{{use_jobs}}', '{{run_jobs}}'],
-            [$feature, $namespace, config('lucid.namespaces.foundation_feature'), $useJobs, $runJobs],
+            ['{{feature}}', '{{namespace}}', '{{foundation_class}}', '{{use_jobs}}', '{{run_jobs}}'],
+            [$feature, $namespace, $this->checkNamespaceAsSurfix($foundation_class, 'Feature'), $useJobs, $runJobs],
             $content
         );
 

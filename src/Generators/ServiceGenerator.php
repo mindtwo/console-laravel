@@ -144,11 +144,12 @@ class ServiceGenerator extends Generator
         $serviceNamespace = $this->findServiceNamespace($name);
         $controllers = $serviceNamespace.'\Http\Controllers';
         $foundation = $this->findFoundationNamespace();
+        $foundation_class = $this->config('lucid.namespaces.foundation_queueable_route_service_provider');
 
         $content = file_get_contents(__DIR__.'/stubs/routeserviceprovider.stub');
         $content = str_replace(
-            ['{{name}}', '{{namespace}}', '{{controllers_namespace}}', '{{foundation_abstract_namespace}}'],
-            [$name, $namespace, $controllers, config('lucid.namespaces.foundation_queueable_route_service_provider')],
+            ['{{name}}', '{{namespace}}', '{{controllers_namespace}}', '{{foundation_class}}'],
+            [$name, $namespace, $controllers, $this->checkNamespaceAsSurfix($foundation_class, 'ServiceProvider')],
             $content
         );
 
