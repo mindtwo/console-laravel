@@ -28,7 +28,7 @@ class Generator
             return $namespace;
         }
 
-        $lastPart = array_pop(explode($namespace));
+        $lastPart = array_pop(explode('\\', $namespace));
 
         return $lastPart == $key ? $namespace : sprintf("%s as %s", $namespace, $key);
     }
