@@ -33,7 +33,11 @@ class FeatureGenerator extends Generator
             return false;
         }
 
-        $namespace = $this->findFeatureNamespace($service);
+        $featureSegments = explode('/', $feature);
+        $feature = array_pop($featureSegments);
+        $subfolderNameSpace = implode('\\', $featureSegments);
+
+        $namespace = $this->findFeatureNamespace($service) . ($subfolderNameSpace ? '\\' . $subfolderNameSpace : '');
 
         $content = file_get_contents($this->getStub());
 
@@ -61,7 +65,7 @@ class FeatureGenerator extends Generator
         $this->createFile($path, $content);
 
         // generate test file
-        $this->generateTestFile($feature, $service);
+        $this->generateTestFile($feature, $service, $subfolderNameSpace);
 
         return new Feature(
             $feature,
@@ -79,23 +83,26 @@ class FeatureGenerator extends Generator
      * @param  string $feature
      * @param  string $service
      */
-    private function generateTestFile($feature, $service)
+    private function generateTestFile($feature, $service, $subfolderNameSpace=null)
     {
-    	$content = file_get_contents($this->getTestStub());
+        $content = file_get_contents($this->getTestStub());
 
-    	$namespace = $this->findFeatureTestNamespace($service);
-        $featureNamespace = $this->findFeatureNamespace($service)."\\$feature";
+        $namespace = $this->findFeatureTestNamespace($service) . ($subfolderNameSpace ? '\\' . $subfolderNameSpace : '');
+        $featureNamespace = $this->findFeatureNamespace($service) . ($subfolderNameSpace ? '\\' . $subfolderNameSpace : '') ."\\$feature";
         $testClass = $feature.'Test';
 
-    	$content = str_replace(
-    		['{{namespace}}', '{{testclass}}', '{{feature}}', '{{feature_namespace}}'],
-    		[$namespace, $testClass, mb_strtolower($feature), $featureNamespace],
-    		$content
-    	);
+        $content = str_replace(
+            ['{{namespace}}', '{{testclass}}', '{{feature}}', '{{feature_namespace}}'],
+            [$namespace, $testClass, mb_strtolower($feature), $featureNamespace],
+            $content
+        );
 
-    	$path = $this->findFeatureTestPath($service, $testClass);
+        $path = $this->findFeatureTestPath(
+            $service,
+            ($subfolderNameSpace ? str_replace('\\', '/', $subfolderNameSpace) . '/' : '').$testClass
+        );
 
-    	$this->createFile($path, $content);
+        $this->createFile($path, $content);
     }
 
     /**
@@ -115,6 +122,6 @@ class FeatureGenerator extends Generator
      */
     private function getTestStub()
     {
-    	return __DIR__.'/stubs/feature-test.stub';
+        return __DIR__.'/stubs/feature-test.stub';
     }
 }
